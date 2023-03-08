@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="style.css">
+   <title>DOM</title>
+</head>
+
+<body>
+   <h1>DOM</h1>
+   <div id="textPassDiv"></div>
+   <div id="rangeDiv"></div>
+   <div id="checkListDiv"></div>
+
+
+   <script src="FieldBase.js"></script>
+   <script src="inputBase.js"></script>
+   <script src="textField.js"></script>
+   <script src="passwordField.js"></script>
+   <script src="integerRangeField.js"></script>
+   <script src="button.js"></script>
+   <script src="checkListField.js"></script>
+   <script>
+
+      // Div for text, password and button field ---
+      const div = document.getElementById('textPassDiv');
+
+      // Text Field
+      const optionText = {
+         element: 'input',
+         id: 'text',
+         name: 'text',
+         isRequired: true,
+         readOnly: true
+      };
+
+      const text = new TextField(div, optionText);
+      text.render();
+      text.setValue('DOM Classes')
+
+      // Password Field
+      const optionPass = {
+         element: 'input',
+         id: 'pass',
+         name: 'pass',
+         isRequired: true,
+         readOnly: false
+      }
+      const pass = new PasswordField(div, optionPass);
+      pass.render();
+
+
+      // Button Field
+      const optionButton = {
+         id: 'button',
+         name: 'button',
+         label: '-- Click --',
+         handller: handller
+      }
+      function handller() {
+         alert(true)
+      }
+      const button = new Button(div, optionButton)
+      button.render();
+      button.onClick()
+      button.onClick()
+
+
+      ////////////////////////////////////////////////////////////////
+      // Div for range field ---
+      const divRange = document.getElementById('rangeDiv');
+      const optionRange = {
+         element: 'input',
+         id: 'range',
+         name: 'range',
+         //isRequired: true,
+         //readOnly: false,
+      }
+
+      const range = new IntegerRangeField(divRange, optionRange);
+      range.render();
+      console.log('Data ===>', range.getValue());
+
+
+      ////////////////////////////////////////////////////////////////
+      // Div for checkList(Choices) field ---
+      // Check List
+      const choice = document.getElementById('checkListDiv');
+
+      const options = {
+         myChoices: [
+            { id: 'item1', text: 'Item 1', icon: 'https://cdn-icons-png.flaticon.com/512/9804/9804811.png' },
+            { id: 'item2', text: 'Item 2' },
+            { id: 'item3', text: 'Item 3' },
+            { id: 'item4', text: 'Item 4', icon: 'https://cdn-icons-png.flaticon.com/512/9804/9804821.png' },
+            { id: 'item5', text: 'Item 5' },
+            { id: 'item6', text: 'Item 6' },
+            { id: 'item7', text: 'Item 7', icon: 'https://cdn-icons-png.flaticon.com/512/9804/9804842.png' },
+            { id: 'item8', text: 'Item 8' },
+            { id: 'item9', text: 'Item 9' },
+         ],
+         inLine: false,
+         onChange: onChange
+      };
+
+      function onChange(myInput) {
+         myInput.disabled = true;
+      }
+
+      const listChoices = new CheckList(choice, options);
+      listChoices.render()
+      // checked for this item
+      listChoices.setValue(['item5', 'item8'])
+
+      console.log('Lists Befor check any item ==>', listChoices.getValue());
+
+   </script>
+
+</body>
+
+</html>
