@@ -1,27 +1,28 @@
-//dom, options
-class Button extends inputBase {
+class GetAllData extends InputBase {
   constructor(dom, options) {
     super(dom, options);
+
+    this.options = options;
+
+    this.createButtonField(options);
+
+    this.render();
+    this.registeringOnClick();
+  }
+
+  createButtonField(options) {
     this.element = document.createElement("button");
     this.element.setAttribute("type", "button");
     this.element.setAttribute("id", options.id);
     this.element.setAttribute("name", options.name);
     this.element.textContent = options.label;
-    this.options = options;
   }
 
-  onClick() {
+  registeringOnClick() {
     this.element.addEventListener("click", () => {
-      //console.log('Type Of ===>', typeof this.options.handller);
-      // Handller Check if its exist and type of is function
-      if (
-        this.options.handller &&
-        typeof this.options.handller === "function"
-      ) {
-        this.options.handller();
+      if (this.options.onClick && typeof this.options.onClick === "function") {
+        this.options.onClick();
       }
     });
   }
 }
-
- 

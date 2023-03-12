@@ -1,14 +1,13 @@
-class inputBase extends FieldBase{
-
+class InputBase extends FieldBase {
   // add
-  element;
+  #element;
 
   constructor(dom, options) {
-    super(dom, options)
+    super(dom, options);
     this.dom = dom;
   }
 
-  render() {
+  appendElement() {
     this.dom.appendChild(this.element);
   }
 
